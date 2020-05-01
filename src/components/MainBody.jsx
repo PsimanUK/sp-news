@@ -1,10 +1,13 @@
 import React from 'react';
+import { Router } from '@reach/router';
+import Articles from './Articles';
+
 
 const MainBody = () => {
     return (
-        <div>
-            <p>The Main Body Will Go HERE!</p>
-        </div>
+        <Router>
+            <Articles path="/" />
+        </Router>
     );
 };
 
