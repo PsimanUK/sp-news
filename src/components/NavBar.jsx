@@ -15,9 +15,9 @@ class NavBar extends Component {
         return (
             <nav>
                 <section className="NavBarSelectors" >
-                    <Link to="/"><button>ALL ARTICLES</button></Link>
+                    <Link to="/" key="all" ><button onClick={this.handleTopicClick} value='all' >ALL ARTICLES</button></Link>
                     {this.state.topics.map((topic) => {
-                        return <Link to={`/topics/${topic.slug}`}><button onClick={this.handleTopicClick} value={topic.slug}>{topic.slug.toUpperCase()} ARTICLES</button></Link>
+                        return <Link to={`/topics/${topic.slug}`} key={topic.slug}><button onClick={this.handleTopicClick} value={topic.slug}>{topic.slug.toUpperCase()} ARTICLES</button></Link>
                     })}
                 </section>
                 <br />
@@ -34,12 +34,6 @@ class NavBar extends Component {
         })
     };
 
-    // componentDidUpdate = (prevProps, previousState) => {
-    //     if (this.prevProps !== this.state)
-    //         console.log('Something changed...')
-    //     console.dir(this.state)
-    // }
-
     handleTopicClick = (event) => {
         const { value } = event.target;
         this.setState({ currentTopic: value, topics: this.state.topics, sort_by: this.state.sort_by })
@@ -49,11 +43,8 @@ class NavBar extends Component {
 
 export default NavBar;
 
-// <Link to="/topics"><label>TOPICS</label></Link>
 
 
-// cDM with get request for all topics
-// map over all the topics and have links to the parametric route for the topics
-// no sorting here, please!
-
-
+// cDM with get request for all topics √
+// map over all the topics and have links to the parametric route for the topics √
+// no sorting here, please! √

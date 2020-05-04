@@ -1,5 +1,5 @@
 import React from 'react';
-// import utils here
+import * as utils from '../utils/utils';
 
 const ArticleCard = (props) => {
     const { author,
@@ -11,8 +11,7 @@ const ArticleCard = (props) => {
         comment_count }
         = props.article;
 
-    // const formattedDate = utils.formatDate(created_at);
-    console.log(created_at)
+    const formattedDate = utils.formatDate(created_at);
     return (
         <article className="card" key={article_id}>
             <div className="column-one">
