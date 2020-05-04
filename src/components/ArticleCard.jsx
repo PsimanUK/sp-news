@@ -1,4 +1,5 @@
 import React from 'react';
+// import utils here
 
 const ArticleCard = (props) => {
     const { author,
@@ -10,9 +11,10 @@ const ArticleCard = (props) => {
         comment_count }
         = props.article;
 
-    const formattedDate = created_at;
+    // const formattedDate = utils.formatDate(created_at);
+    console.log(created_at)
     return (
-        <div className="card" key={article_id}>
+        <article className="card" key={article_id}>
             <div className="column-one">
                 <p className="card__topic" >TOPIC: {topic}</p>
                 <h3 className="card__title" >{title}</h3>
@@ -26,7 +28,7 @@ const ArticleCard = (props) => {
                 <button className="card__button">HIDE</button>
                 <p className="card__author" >{author}</p>
             </div>
-        </div>
+        </article>
     );
 };
 

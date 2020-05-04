@@ -1,8 +1,9 @@
 import React from 'react';
+import { Router } from '@reach/router';
 import './App.css';
 import Header from './components/Header';
 import NavBar from './components/NavBar';
-import MainBody from './components/MainBody';
+import Articles from './components/Articles';
 
 function App() {
   return (
@@ -10,7 +11,10 @@ function App() {
       <Header />
       <br />
       <NavBar />
-      <MainBody />
+      <Router>
+        <Articles path="/" />
+        <Articles path="/topics/:topic_slug" />
+      </Router>
     </div>
   );
 }

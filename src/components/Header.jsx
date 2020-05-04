@@ -5,6 +5,7 @@ const Header = () => {
         <header className="heading" >
             <h1>SP NEWS</h1>
             <h2>Where the truth comes out to play...</h2>
+            <button>LOGIN</button>
         </header>
     );
 };
