@@ -2,6 +2,85 @@
   text-align: center;
 }
 
+.heading {
+  margin: auto;
+  max-width: 85%;
+  height: 150px;
+  background-color: rgb(121, 194, 194);
+  border-radius: 10px;
+}
+
+.NavBarSelectors {
+  margin: auto;
+  max-width: 80%;
+  height: 30px;
+  text-align: center;
+  background-color: rgb(121, 194, 194);
+  border-radius: 10px;
+}
+
+.DisplayBar {
+  margin: auto;
+  max-width: 70%;
+  height: 30px;
+  text-align: center;
+  background-color: rgb(121, 194, 194);
+  border-radius: 10px;
+}
+
+.DisplayBarInfo {
+  margin: auto;
+  align-self: auto;
+  max-width: 50%;
+  height: 20px;
+  text-align: center;
+  background-color: rgb(139, 139, 139);
+  border-radius: 10px;
+}
+
+
 label {
   padding: 10px;
 }
+
+.ArticleCard {
+  padding: 20px;
+}
+
+.card {
+  margin: auto;
+  align-self: center;
+  max-width: 80%;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  border-radius: 5px;
+}
+
+.card:hover {
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+
+.card__topic {
+  font-size: 10px;
+}
+
+.card__votes {
+  font-size: 10px;
+}
+
+.card__comment-count {
+  font-size: 10px;
+}
+
+.card__date {
+  font-size: 10px;
+}
+
+.card__button {
+  text-align: center;
+  max-width: 50px
+}
+
+
+
+

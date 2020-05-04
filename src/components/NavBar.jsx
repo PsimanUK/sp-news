@@ -16,6 +16,7 @@ class NavBar extends Component {
                     <Link to={`/${this.state.sort_by}`}><label>SORT BY</label></Link>
                     <Link to="/topics"><label>TOPICS</label></Link>
                 </section>
+                <br />
                 <section>
                     <DisplayBar />
                 </section>
