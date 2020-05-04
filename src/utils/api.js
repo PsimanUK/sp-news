@@ -1,15 +1,40 @@
 import axios from 'axios';
 
 export const fetchArticles = (props) => {
-    console.dir(props, '<-- props in fetchArticles')
-    return axios.get('https://sp-news.herokuapp.com/api/articles', { params: { topic: props } }).then(({ data: { articles } }) => {
-        return { articles };
+    console.dir(props, '<-- fetchArticles props')
+    // WHY CAN"T I ACCESS AN OBJECT KEY ON PROPS WHEN I CAN LOG PROPS?
+
+    // let topic = '';
+    // let article_id = '';
+
+
+    // if (props.hasOwnProperty('topic')) {
+    //     topic = props.topic;
+    // } else {
+    //     topic = undefined;
+    // }
+
+    // if (props.hasOwnProperty('article_id')) {
+    //     article_id = props.article_id;
+    // } else {
+    //     article_id = undefined;
+    // }
+
+    //const { topic, article_id } = props;
+    //console.log(`The topic on the props is ${props.topic} and the article_id on the props is ${props.article_id}, which were received by fetchArticles`)
+
+    return axios.get('https://sp-news.herokuapp.com/api/articles', { params: { topic: props } }).then(({ data }) => {
+        if (data.articles) return { articles: data.articles };
+        if (data.article) return { article: data.article };
+    }).catch((error) => {
+        console.log(error, '<-- fetchArticles Error')
     })
 };
 
 export const fetchTopics = () => {
     return axios.get('https://sp-news.herokuapp.com/api/topics').then((response) => {
-        console.log(response);
         return response;
+    }).catch((error) => {
+        console.log(error, '<-- fetchTopics Error')
     })
 };

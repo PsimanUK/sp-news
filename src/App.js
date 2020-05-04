@@ -4,6 +4,7 @@ import './App.css';
 import Header from './components/Header';
 import NavBar from './components/NavBar';
 import Articles from './components/Articles';
+import IndividualArticle from './components/IndividualArticle';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
       <Router>
         <Articles path="/" />
         <Articles path="/topics/:topic_slug" />
+        <IndividualArticle path="/:article_id" />
       </Router>
     </div>
   );

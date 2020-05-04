@@ -31,10 +31,10 @@ class Articles extends Component {
 
     componentDidUpdate = (prevProps, prevState) => {
         const { topic_slug } = this.props;
-        console.log(topic_slug, '<-- the slug topic')
         if (topic_slug !== this.state.currentTopic) {
-            api.fetchArticles(topic_slug).then((response) => {
-                console.dir(response, '<-- response in cDU')
+            const topic = topic_slug
+            api.fetchArticles(topic).then((response) => {
+                // console.dir(response, '<-- response in cDU')
                 this.setState({ articles: response.articles, isMounted: this.state.isMounted, currentTopic: topic_slug })
             })
         }
@@ -43,7 +43,6 @@ class Articles extends Component {
     componentDidMount = () => {
         console.log('Articles Mounted!')
         api.fetchArticles().then(({ articles }) => {
-            console.log(articles, 'the mounted articles')
             this.setState({ articles, isMounted: true, currentTopic: 'all' })
 
         })
