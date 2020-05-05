@@ -31,6 +31,22 @@ export const fetchArticles = (props) => {
     })
 };
 
+export const fetchIndividualArticle = (article_id) => {
+    return axios.get(`https://sp-news.herokuapp.com/api/articles/${article_id}`).then(({ data }) => {
+        return data.article;
+    }).catch((error) => {
+        console.log(error, '<-- fetchTopics Error')
+    })
+};
+
+export const fetchComments = (article_id) => {
+    return axios.get(`https://sp-news.herokuapp.com/api/articles/${article_id}/comments`).then(({ data }) => {
+        return data.comments;
+    }).catch((error) => {
+        console.log(error, '<-- fetchTopics Error')
+    })
+};
+
 export const fetchTopics = () => {
     return axios.get('https://sp-news.herokuapp.com/api/topics').then((response) => {
         return response;

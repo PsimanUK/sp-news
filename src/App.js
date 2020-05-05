@@ -16,6 +16,7 @@ function App() {
         <Articles path="/" />
         <Articles path="/topics/:topic_slug" />
         <IndividualArticle path="/:article_id" />
+        <IndividualArticle path="/:article_id/comments" />
       </Router>
     </div>
   );
