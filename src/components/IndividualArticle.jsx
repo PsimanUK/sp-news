@@ -12,6 +12,7 @@ class IndividualArticle extends Component {
         if (this.state.isMounted === false && !this.state.error) return <p>Just Fetching the Article for you...</p>;
         if (this.state.error) return <ErrorFrame error=/*{this.state.error}*/"THIS ERROR" />;
         const { author, title, body, article_id, created_at, topic, votes, comment_count } = this.state.article;
+        const { username } = this.props;
         const formattedDate = utils.formatDate(created_at);
         return (
             <section>
@@ -32,7 +33,7 @@ class IndividualArticle extends Component {
                     </div>
                 </article>
                 <h3>See Below For Comments</h3>
-                <Comments article_id={article_id} />
+                <Comments article_id={article_id} username={username} />
             </section>
         );
     };

@@ -9,20 +9,19 @@ import ErrorFrame from './components/ErrorFrame';
 
 class App extends Component {
 
-  state = { user: '' }
+  state = { user: 'weegembump' }
 
   render() {
     return (
       <div className="App">
-        <Header />
+        <Header user={this.state.user} />
         <br />
         <NavBar />
         <Router>
           <Articles path="/" />
           <Articles path="/articles" />
           <Articles path="/topics/:topic_slug" />
-          <IndividualArticle path="/articles/:article_id" />
-          <IndividualArticle path="/articles/:article_id/comments" />
+          <IndividualArticle path="/articles/:article_id" username={this.state.user} />
           <ErrorFrame default />
         </Router>
       </div>
