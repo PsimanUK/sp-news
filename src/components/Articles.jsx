@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import * as api from '../utils/api';
 import ArticleCard from './ArticleCard';
+import ArticlesForm from './ArticlesForm';
 
 class Articles extends Component {
 
@@ -22,6 +23,7 @@ class Articles extends Component {
         if (this.state.isMounted === false) return <p>Fetching Articles...</p>
         return (
             <main >
+                <ArticlesForm />
                 {this.state.articles.map((article) => {
                     return <ArticleCard key={article.article_id} article={article} />
                 })}
