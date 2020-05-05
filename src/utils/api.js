@@ -24,8 +24,9 @@ export const fetchArticles = (props) => {
     //console.log(`The topic on the props is ${props.topic} and the article_id on the props is ${props.article_id}, which were received by fetchArticles`)
 
     return axios.get('https://sp-news.herokuapp.com/api/articles', { params: { topic: props } }).then(({ data }) => {
-        if (data.articles) return { articles: data.articles };
-        if (data.article) return { article: data.article };
+        return { articles: data.articles };
+        // if (data.articles) return { articles: data.articles };
+        // if (data.article) return { article: data.article };
     }).catch((error) => {
         console.log(error, '<-- fetchArticles Error')
     })
@@ -35,7 +36,7 @@ export const fetchIndividualArticle = (article_id) => {
     return axios.get(`https://sp-news.herokuapp.com/api/articles/${article_id}`).then(({ data }) => {
         return data.article;
     }).catch((error) => {
-        console.log(error, '<-- fetchTopics Error')
+        console.log(error, '<-- fetchIndividualArticle Error')
     })
 };
 
@@ -43,7 +44,7 @@ export const fetchComments = (article_id) => {
     return axios.get(`https://sp-news.herokuapp.com/api/articles/${article_id}/comments`).then(({ data }) => {
         return data.comments;
     }).catch((error) => {
-        console.log(error, '<-- fetchTopics Error')
+        console.log(error, '<-- fetchComments Error')
     })
 };
 

@@ -16,16 +16,15 @@ class Comments extends Component {
             <section>
                 {this.state.comments.map((comment) => {
                     return (
-                        <comment>
+                        <section key={comment.comment_id} >
                             <p>{comment.body}</p>
                             <p>{comment.author}</p>
                             <p>{formatDate(comment.created_at)}</p>
                             <p>{comment.votes}</p>
                             <button>VOTE UP</button>
                             <button>VOTE DOWN</button>
-                        </comment>
+                        </section>
                     )
-
                 })}
             </section>
         );
@@ -33,7 +32,6 @@ class Comments extends Component {
 
     componentDidMount = () => {
         api.fetchComments(this.props.article_id).then((response) => {
-            console.log(response, '<-- the response from fetchComments to Comments')
             this.setState({ comments: response, isMounted: true })
 
         })

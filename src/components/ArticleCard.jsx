@@ -1,5 +1,6 @@
 import React from 'react';
 import * as utils from '../utils/utils';
+import { Link } from '@reach/router';
 
 const ArticleCard = (props) => {
     const { author,
@@ -16,7 +17,7 @@ const ArticleCard = (props) => {
         <article className="card" key={article_id}>
             <div className="column-one">
                 <p className="card__topic" >TOPIC: {topic}</p>
-                <h3 className="card__title" >{title}</h3>
+                <Link to={`/${article_id}`} ><h3 className="card__title" >{title}</h3></Link>
                 <p className="card__date">{formattedDate}</p>
             </div>
             <div className="column-two">
