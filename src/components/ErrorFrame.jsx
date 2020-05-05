@@ -1,9 +1,10 @@
 import React from 'react';
 
-const ErrorFrame = () => {
+const ErrorFrame = ({ error }) => {
+
     return (
         <div>
-            <p>YOU HAVE ENCOUNTERED AN ERROR!</p>
+            {error ? error : <p>YOU HAVE ENCOUNTERED AN ERROR!</p>}
         </div>
     );
 };

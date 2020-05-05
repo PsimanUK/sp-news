@@ -1,24 +1,17 @@
-import React, { Component } from 'react';
-import { Link } from '@reach/router';
+import React from 'react';
 
-class ArticlesForm extends Component {
-
-    state = {}
-
-    render() {
-        return (
-            <form>
-                <label>SORT BY: </label>
-                <Link to="?sort=comment_count" >COMMENT COUNT</Link>
-            </form>
-        );
-    }
-}
+const ArticlesForm = (props) => {
+    const { updateSortBy } = props;
+    return (
+        <form>
+            <label for="sort-selector">SORT BY: </label>
+            <select id="sort-selector">
+                <option value="created_at" onClick={() => updateSortBy('created_at')}>Date</option>
+                <option value="comment_count" onClick={() => updateSortBy('comment_count')} >Comments</option>
+                <option value="votes" onClick={() => updateSortBy('votes')} >Votes</option>
+            </select>
+        </form>
+    );
+};
 
 export default ArticlesForm;
-
-// {/* <select>
-//     <option value="created_at">Date Created</option>
-//     <option value="comment_count">Comment Count</option>
-//     <option value="votes">Vote Count</option>
-// </select> */}

@@ -2,13 +2,15 @@ import React, { Component } from 'react';
 import * as api from '../utils/api';
 import * as utils from '../utils/utils'
 import Comments from './Comments';
+import ErrorFrame from './ErrorFrame';
 
 class IndividualArticle extends Component {
 
-    state = { article: { author: '', title: '', article_id: 0, body: '', topic: '', created_at: '', votes: 0, comment_count: 0 }, isMounted: false };
+    state = { article: { author: '', title: '', article_id: 0, body: '', topic: '', created_at: '', votes: 0, comment_count: 0 }, isMounted: false, error: null };
 
     render() {
-        if (this.state.isMounted === false) return <p>Just Fetching the Article for you...</p>;
+        if (this.state.isMounted === false && !this.state.error) return <p>Just Fetching the Article for you...</p>;
+        if (this.state.error) return <ErrorFrame error=/*{this.state.error}*/"THIS ERROR" />;
         const { author, title, body, article_id, created_at, topic, votes, comment_count } = this.state.article;
         const formattedDate = utils.formatDate(created_at);
         return (
@@ -38,10 +40,13 @@ class IndividualArticle extends Component {
     componentDidMount = () => {
         console.log('Individual Article Mounted!');
         const { article_id } = this.props;
-        console.log(article_id, '<-- Individual Article props article_id')
+
         api.fetchIndividualArticle(article_id).then((response) => {
-            console.dir(response, '<-- the response form Individual Article cDM')
+
             this.setState({ article: response, isMounted: true })
+        }).catch((newError) => {
+
+            this.setState({ error: newError })
         })
 
     };

@@ -1,3 +1,6 @@
 export const formatDate = (date) => {
-    return Date(date);
+    return new Date(date).toString();
 };
+
+// Day.js
+// Moment.js
