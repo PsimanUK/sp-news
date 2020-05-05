@@ -5,6 +5,7 @@ import Header from './components/Header';
 import NavBar from './components/NavBar';
 import Articles from './components/Articles';
 import IndividualArticle from './components/IndividualArticle';
+import ErrorFrame from './components/ErrorFrame';
 
 class App extends Component {
 
@@ -18,9 +19,11 @@ class App extends Component {
         <NavBar />
         <Router>
           <Articles path="/" />
+          <Articles path="/articles" />
           <Articles path="/topics/:topic_slug" />
-          <IndividualArticle path="/:article_id" />
-          <IndividualArticle path="/:article_id/comments" />
+          <IndividualArticle path="/articles/:article_id" />
+          <IndividualArticle path="/articles/:article_id/comments" />
+          <ErrorFrame default />
         </Router>
       </div>
     );

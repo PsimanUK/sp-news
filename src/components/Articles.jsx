@@ -38,6 +38,8 @@ class Articles extends Component {
             api.fetchArticles(topic).then((response) => {
                 // console.dir(response, '<-- response in cDU')
                 this.setState({ articles: response.articles, isMounted: this.state.isMounted, currentTopic: topic_slug })
+            }).catch((error) => {
+                console.log('YOU HAVE AN ARTICLE TOPIC ERROR')
             })
         }
     }
@@ -47,6 +49,8 @@ class Articles extends Component {
         api.fetchArticles().then(({ articles }) => {
             this.setState({ articles, isMounted: true, currentTopic: 'all' })
 
+        }).catch((error) => {
+            console.log('YOU HAVE AN ARTICLES ERROR')
         })
     };
 

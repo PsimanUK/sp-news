@@ -17,7 +17,7 @@ const ArticleCard = (props) => {
         <article className="card" key={article_id}>
             <div className="column-one">
                 <p className="card__topic" >TOPIC: {topic}</p>
-                <Link to={`/${article_id}`} ><h3 className="card__title" >{title}</h3></Link>
+                <Link to={`/articles/${article_id}`} ><h3 className="card__title" >{title}</h3></Link>
                 <p className="card__date">{formattedDate}</p>
             </div>
             <div className="column-two">

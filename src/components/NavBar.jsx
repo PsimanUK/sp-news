@@ -15,7 +15,7 @@ class NavBar extends Component {
         return (
             <nav>
                 <section className="NavBarSelectors" >
-                    <Link to="/" key="all" ><button onClick={this.handleTopicClick} value='all' >ALL ARTICLES</button></Link>
+                    <Link to="/articles" key="all" ><button onClick={this.handleTopicClick} value='all' >ALL ARTICLES</button></Link>
                     {this.state.topics.map((topic) => {
                         return <Link to={`/topics/${topic.slug}`} key={topic.slug}><button onClick={this.handleTopicClick} value={topic.slug}>{topic.slug.toUpperCase()} ARTICLES</button></Link>
                     })}
