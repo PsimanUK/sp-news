@@ -52,7 +52,7 @@ export const postComment = (article_id, username, body) => {
 
 export const updateVote = (article_id, voteChange) => {
     console.log(article_id, '<-- the article needing vote change and ', voteChange, '<-- the requested vote change amount')
-    return axios.patch(`https://sp-news.herokuapp.com/api/articles/${article_id})`, { inc_votes: voteChange })
+    return axios.patch(`https://sp-news.herokuapp.com/api/articles/${article_id}`, { inc_votes: voteChange })
         .then((response) => {
             console.log(response, '<-- the response from updateVote')
         })

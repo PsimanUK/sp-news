@@ -6,21 +6,15 @@ class CommentPoster extends Component {
     state = { commentBody: null, commentSubmitted: false }
 
     render() {
+        // input -> state, 
         return (
             <form onSubmit={this.handleCommentSubmit} >
                 <label >Comment:
-                    <textarea onChange={this.handleChange} className="comment-input" type="text" name="body" placeholder='Enter your comment here...' required ></textarea>
+                    <textarea onChange={this.handleChange} className="comment-input" value={this.state.commentBody} type="text" name="body" placeholder='Enter your comment here...' required ></textarea>
                 </label>
                 <button>SUBMIT</button>
             </form>
         );
-    }
-
-    componentDidUpdate = (prevProps, PrevState) => {
-        if (this.state.commentSubmitted === true) {
-            this.setState({ commentBody: null });
-        }
-
     }
 
     handleCommentSubmit = (event) => {
@@ -33,7 +27,7 @@ class CommentPoster extends Component {
             console.dir(response.data.comment, '<-- response from postComment in handleCommentSubmit');
             updateComments(response.data.comment);
             console.log(this.state.commentBody, '<-- the comment body')
-
+            this.setState({ commentBody: '' });
         }).catch((err) => console.dir(err.response, '<-- error from postComment in handleCommentSubmit'))
     };
 
