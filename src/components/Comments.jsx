@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { formatDate } from '../utils/utils';
 import * as api from '../utils/api';
 import CommentPoster from './CommentPoster';
+import CommentCard from './CommentCard';
 
 class Comments extends Component {
 
@@ -18,14 +18,7 @@ class Comments extends Component {
                 <CommentPoster username={this.props.username} article_id={this.props.article_id} updateComments={this.updateComments} />
                 {this.state.comments.map((comment) => {
                     return (
-                        <section key={comment.comment_id} >
-                            <p>{comment.body}</p>
-                            <p>{comment.author}</p>
-                            <p>{formatDate(comment.created_at)}</p>
-                            <p>{comment.votes}</p>
-                            <button>VOTE UP</button>
-                            <button>VOTE DOWN</button>
-                        </section>
+                        <CommentCard comment={comment} key={comment.comment_id} />
                     )
                 })}
             </section>
@@ -51,6 +44,10 @@ class Comments extends Component {
 
     updateComments = (comment) => {
         this.setState({ comments: [comment, ...this.state.comments], isMounted: true })
+    };
+
+    commentVoteChanger = () => {
+        this.setState()
     };
 }
 

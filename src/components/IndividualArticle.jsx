@@ -26,8 +26,8 @@ class IndividualArticle extends Component {
                     <div className="column-two">
                         <p className="card__votes">VOTES: {votes}</p>
                         <p className="card__comment-count">COMMENTS: {comment_count}</p>
-                        <button>VOTE UP</button>
-                        <button>VOTE DOWN</button>
+                        <button onClick={() => this.articleVoteChanger(1)} >VOTE UP</button>
+                        <button onClick={() => this.articleVoteChanger(-1)}>VOTE DOWN</button>
                     </div>
                     <div className="column-three">
                         <button className="card__button">HIDE</button>
@@ -58,7 +58,12 @@ class IndividualArticle extends Component {
         const { author, title, article_id, body, topic, created_at, votes, comment_count } = this.state.article;
         const { isMounted, error } = this.state;
         this.setState({ article: { author, title, article_id, body, topic, created_at, votes: votes + voteChange, comment_count }, isMounted, error })
-        api.updateVote(article_id, voteChange)
+        api.updateVote(article_id, voteChange).then((response) => {
+            console.log(response, '<-- response from articleVoteChanger')
+        })
+            .catch((error) => {
+                console.dir(error, '<-- error from articleVoteChanger')
+            })
     };
 };
 
