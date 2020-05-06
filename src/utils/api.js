@@ -54,7 +54,7 @@ export const updateArticleVote = (article_id, voteChange) => {
     console.log(article_id, '<-- the article needing vote change and ', voteChange, '<-- the requested vote change amount')
     return axios.patch(`https://sp-news.herokuapp.com/api/articles/${article_id}`, { inc_votes: voteChange })
         .then((response) => {
-            console.log(response, '<-- the response from updateVote')
+            return response;
         })
 };
 
@@ -62,6 +62,13 @@ export const updateCommentVote = (comment_id, voteChange) => {
     //console.log(article_id, '<-- the article needing vote change and ', voteChange, '<-- the requested vote change amount')
     return axios.patch(`https://sp-news.herokuapp.com/api/comments/${comment_id}`, { inc_votes: voteChange })
         .then((response) => {
-            console.log(response, '<-- the response from updateCommentVote')
+            return response;
         })
 };
+
+export const deleteComment = (comment_id) => {
+    return axios.delete(`https://sp-news.herokuapp.com/api/comments/${comment_id}`)
+        .then((response) => {
+            return response;
+        })
+}

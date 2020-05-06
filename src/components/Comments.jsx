@@ -13,12 +13,13 @@ class Comments extends Component {
 
     render() {
         if (this.state.isMounted === false) return <p>Fetching comments...</p>
+        const { username, article_id } = this.props;
         return (
             <section>
-                <CommentPoster username={this.props.username} article_id={this.props.article_id} updateComments={this.updateComments} />
+                <CommentPoster username={username} article_id={article_id} updateComments={this.updateComments} />
                 {this.state.comments.map((comment) => {
                     return (
-                        <CommentCard comment={comment} key={comment.comment_id} />
+                        <CommentCard comment={comment} key={comment.comment_id} username={username} comment_id={comment.comment_id} removeComment={this.removeComment} />
                     )
                 })}
             </section>
@@ -46,8 +47,23 @@ class Comments extends Component {
         this.setState({ comments: [comment, ...this.state.comments], isMounted: true })
     };
 
-    commentVoteChanger = () => {
-        this.setState()
+    removeComment = (comment_id) => {
+
+        const updatedComments = this.state.comments.map((comment) => {
+
+            if (comment.comment_id !== comment_id) {
+                return comment;
+            } else {
+                return { comment_id: comment.comment_id, votes: 0, created_at: new Date(), author: comment.author, body: `THIS COMMENT HAS BEEN DELETED BY ${comment.author}` }
+            }
+        })
+
+        this.setState({ comments: updatedComments, isMounted: true })
+
+        api.deleteComment(comment_id)
+            .catch((error) => {
+                console.log(error, '<-- error from deleteComment in removeComment')
+            })
     };
 }
 
