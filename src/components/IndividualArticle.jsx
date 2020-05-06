@@ -58,7 +58,7 @@ class IndividualArticle extends Component {
         const { author, title, article_id, body, topic, created_at, votes, comment_count } = this.state.article;
         const { isMounted, error } = this.state;
         this.setState({ article: { author, title, article_id, body, topic, created_at, votes: votes + voteChange, comment_count }, isMounted, error })
-        api.updateVote(article_id, voteChange).then((response) => {
+        api.updateArticleVote(article_id, voteChange).then((response) => {
             console.log(response, '<-- response from articleVoteChanger')
         })
             .catch((error) => {

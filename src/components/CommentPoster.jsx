@@ -3,7 +3,7 @@ import * as api from '../utils/api';
 
 class CommentPoster extends Component {
 
-    state = { commentBody: null, commentSubmitted: false }
+    state = { commentBody: '', commentSubmitted: false }
 
     render() {
         // input -> state, 
