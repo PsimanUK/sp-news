@@ -16,8 +16,11 @@ class CommentPoster extends Component {
         );
     }
 
-    componentDidUpdate = () => {
-        this.setState({ commentBody: null });
+    componentDidUpdate = (prevProps, PrevState) => {
+        if (this.state.commentSubmitted === true) {
+            this.setState({ commentBody: null });
+        }
+
     }
 
     handleCommentSubmit = (event) => {
