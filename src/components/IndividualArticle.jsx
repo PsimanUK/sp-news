@@ -6,33 +6,34 @@ import ErrorFrame from './ErrorFrame';
 
 class IndividualArticle extends Component {
 
-    state = { article: { author: '', title: '', article_id: 0, body: '', topic: '', created_at: '', votes: 0, comment_count: 0 }, isMounted: false, error: null };
+    state = { article: { author: '', title: '', article_id: 0, body: '', topic: '', created_at: '', votes: 0, comment_count: 0 }, isMounted: false, commentCountChange: 0, error: null };
 
     render() {
         if (this.state.isMounted === false && !this.state.error) return <p>Just Fetching the Article for you...</p>;
         if (this.state.error) return <ErrorFrame error=/*{this.state.error}*/"THIS ERROR" />;
-        const { author, title, body, article_id, created_at, topic, votes, comment_count } = this.state.article;
+        const { author, title, body, article_id, created_at, topic, votes } = this.state.article;
         const { username } = this.props;
         const formattedDate = utils.formatDate(created_at);
+        const comment_count = parseInt(this.state.article.comment_count);
         return (
             <section>
                 <article className="card" key={article_id}>
-                    <div className="column-one">
+                    <section className="column-one">
                         <p className="card__topic" >TOPIC: {topic}</p>
                         <h3 className="card__title" >{title}</h3>
                         <p className="card__body" >{body}</p>
                         <p className="card__date">{formattedDate}</p>
-                    </div>
-                    <div className="column-two">
+                    </section>
+                    <section className="column-two">
                         <p className="card__votes">VOTES: {votes}</p>
-                        <p className="card__comment-count">COMMENTS: {comment_count}</p>
+                        <p className="card__comment-count">COMMENTS: {comment_count + this.state.commentCountChange}</p>
                         <button onClick={() => this.articleVoteChanger(1)} >VOTE UP</button>
                         <button onClick={() => this.articleVoteChanger(-1)}>VOTE DOWN</button>
-                    </div>
-                    <div className="column-three">
+                    </section>
+                    <section className="column-three">
                         <button className="card__button">HIDE</button>
                         <p className="card__author" >{author}</p>
-                    </div>
+                    </section>
                 </article>
                 <h3>See Below For Comments</h3>
                 <Comments article_id={article_id} username={username} />
@@ -54,16 +55,34 @@ class IndividualArticle extends Component {
 
     };
 
+    componentDidUpdate = (prevProps, prevState) => {
+        const { votes, comment_count } = this.state.article;
+        if (votes !== prevState.article.votes || comment_count !== prevState.article.comment_count) {
+            const { article_id } = this.props;
+            api.fetchIndividualArticle(article_id).then((response) => {
+
+                this.setState({ article: response, isMounted: true })
+            }).catch((newError) => {
+
+                this.setState({ error: newError })
+            })
+        }
+    }
+
     articleVoteChanger = (voteChange) => {
         const { author, title, article_id, body, topic, created_at, votes, comment_count } = this.state.article;
         const { isMounted, error } = this.state;
         this.setState({ article: { author, title, article_id, body, topic, created_at, votes: votes + voteChange, comment_count }, isMounted, error })
         api.updateArticleVote(article_id, voteChange).then((response) => {
-            console.log(response, '<-- response from articleVoteChanger')
+            return response;
         })
             .catch((error) => {
                 console.dir(error, '<-- error from articleVoteChanger')
             })
+    };
+
+    commentCountChanger = (commentCountChange) => {
+        this.setState({ commentCountChange })
     };
 };
 

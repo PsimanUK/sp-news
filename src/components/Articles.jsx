@@ -33,13 +33,9 @@ class Articles extends Component {
 
     componentDidUpdate = (prevProps, prevState) => {
         const { topic_slug } = this.props;
-        console.log(`The previous topic_slug is ${prevProps.topic_slug} and the current one is ${topic_slug}.`)
-        console.log(`The previous sort_by is ${prevState.sort_by} and the current one is ${this.state.sort_by}.`)
 
         if (topic_slug !== prevProps.topic_slug || this.state.sort_by !== prevState.sort_by) {
-            // const topic = topic_slug
             api.fetchArticles(topic_slug, this.state.sort_by).then((response) => {
-                // console.dir(response, '<-- response in cDU')
                 this.setState({ articles: response.articles, isMounted: this.state.isMounted })
             }).catch((error) => {
                 console.dir(error, 'YOU HAVE AN ARTICLE TOPIC ERROR')
@@ -58,21 +54,10 @@ class Articles extends Component {
     };
 
     updateSortBy = (sort_by) => {
-        console.log('Using Articles updateSortBy')
-        console.log(sort_by, '<-- the requested sort_by')
         if (sort_by !== this.state.sort_by) {
             this.setState({ sort_by })
-            // .then(() => {
-            //     console.log(this.state.sort_by, '<-- the new sort_by');
-            // })
-            // .catch((err) => console.log(err, '<-- updateSortBy err'))
-
-        }
-
+        };
     };
-
-}
+};
 
 export default Articles;
-
-// { data: { articles } }

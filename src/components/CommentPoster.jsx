@@ -6,7 +6,6 @@ class CommentPoster extends Component {
     state = { commentBody: '', commentSubmitted: false }
 
     render() {
-        // input -> state, 
         return (
             <form onSubmit={this.handleCommentSubmit} >
                 <label >Comment:
@@ -21,12 +20,9 @@ class CommentPoster extends Component {
         event.preventDefault();
         const body = this.state.commentBody;
         const { username, article_id, updateComments } = this.props;
-        console.log(username, article_id, '<-- username and id')
 
         return api.postComment(article_id, username, body).then((response) => {
-            console.dir(response.data.comment, '<-- response from postComment in handleCommentSubmit');
             updateComments(response.data.comment);
-            console.log(this.state.commentBody, '<-- the comment body')
             this.setState({ commentBody: '' });
         }).catch((err) => console.dir(err.response, '<-- error from postComment in handleCommentSubmit'))
     };

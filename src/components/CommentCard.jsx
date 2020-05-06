@@ -28,24 +28,12 @@ class CommentCard extends Component {
         const { comment_id } = this.props.comment;
         this.setState({ voteChange: this.state.voteChange + voteChange })
         api.updateCommentVote(comment_id, voteChange).then((response) => {
-            console.log(response, '<-- response from articleVoteChanger')
+            return response;
         })
             .catch((error) => {
                 console.dir(error, '<-- error from articleVoteChanger')
             })
     };
-
-    // deleteButton = () => {
-    //     // console.log(this.state.comment_id, '<-- the comment ID in deleteButton')
-    //     if (this.props.comment.author === this.state.loggedInUser) {
-    //         return (
-    //             <button onClick={console.log(this.state.comment_id, '<-- the current comment ID for this card')} >DELETE COMMENT</button>
-    //         )
-    //     }
-
-    // }
-    // this.props.removeComment(this.state.comment_id)
-
-}
+};
 
 export default CommentCard;

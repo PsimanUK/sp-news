@@ -35,10 +35,8 @@ class Comments extends Component {
 
     componentDidUpdate = (prevProps, prevState) => {
         if (this.state.comments.length !== prevState.comments.length) {
-            console.log('A comment has been added or removed. And prevProps.article_id is ', prevProps.article_id)
-            api.fetchComments(prevProps.article_id).then((response) => {
+            api.fetchComments(this.props.article_id).then((response) => {
                 this.setState({ comments: response, isMounted: true })
-
             })
         }
     }
@@ -49,15 +47,12 @@ class Comments extends Component {
 
     removeComment = (comment_id) => {
 
-        const updatedComments = this.state.comments.map((comment) => {
+        const updatedComments = this.state.comments.filter((comment) => {
 
-            if (comment.comment_id !== comment_id) {
-                return comment;
-            } else {
-                return { comment_id: comment.comment_id, votes: 0, created_at: new Date(), author: comment.author, body: `THIS COMMENT HAS BEEN DELETED BY ${comment.author}` }
-            }
+            return (comment.comment_id !== comment_id && comment);
+
         })
-
+        console.log(updatedComments, '<-- updateComments array')
         this.setState({ comments: updatedComments, isMounted: true })
 
         api.deleteComment(comment_id)
