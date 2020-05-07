@@ -33,7 +33,6 @@ class IndividualArticle extends Component {
                         <button onClick={() => this.articleVoteChanger(-1)}>VOTE DOWN</button>
                     </section>
                     <section className="column-three">
-                        <button className="card__button">HIDE</button>
                         <p className="card__author" >{author}</p>
                     </section>
                 </article>
@@ -89,3 +88,7 @@ class IndividualArticle extends Component {
 };
 
 export default IndividualArticle;
+
+// Add ability to hide unwanted articles if time...
+
+// <button className="card__button">HIDE</button>

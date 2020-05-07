@@ -40,23 +40,16 @@ class Articles extends Component {
 
         if (topic_slug !== prevProps.topic_slug || sort_by !== prevState.sort_by) {
 
-            api.fetchArticles(topic_slug, sort_by).then((response) => {
-                this.setState({ articles: response.articles, isFetching: false })
-            }).catch((error) => {
-                return <ErrorFrame error={error} />
-            })
+            this.getArticles(topic_slug, sort_by);
 
         }
     }
 
     componentDidMount = () => {
 
-        api.fetchArticles().then(({ articles }) => {
-            this.setState({ articles, isFetching: false, currentTopic: 'all' })
+        const { topic_slug } = this.props;
 
-        }).catch((error) => {
-            return <ErrorFrame error={error} />
-        })
+        this.getArticles(topic_slug);
 
     };
 
@@ -66,6 +59,14 @@ class Articles extends Component {
         };
     };
 
+    getArticles = (topic_slug, sort_by) => {
+        api.fetchArticles(topic_slug, sort_by).then(({ articles }) => {
+            this.setState({ articles, isFetching: false, currentTopic: topic_slug && 'all' })
+
+        }).catch((error) => {
+            return <ErrorFrame error={error} />
+        })
+    }
 
 };
 
@@ -77,36 +78,16 @@ export default Articles;
 // Attempt at error handling invalid topics
 
 // topicChecker = (topic_slug) => {
-//     const checkedTopic = [];
-//     api.fetchTopics().then((response) => {
+    //     let hasTopic = false;
+    //     api.fetchTopics().then((response) => {
 
-//         return response.data.topics.forEach((topic) => {
-//             // console.log(topic.slug, '<-- the current topic slug', topic_slug, '<-- the requested topic slug')
-//             if (topic.slug === topic_slug) {
-//                 checkedTopic.push(topic);
-//             }
-//         })
-//     })
-//     console.log(checkedTopic, '<-- checked topic before return')
-//     return checkedTopic;
-// }
-
-// componentDidUpdate = (prevProps, prevState) => {
-//     const { topic_slug } = this.props;
-//     const { sort_by } = this.state;
-
-//     if (topic_slug !== prevProps.topic_slug || sort_by !== prevState.sort_by) {
-//         console.log(topic_slug, '<-- topic slug')
-//         const checkedTopic = this.topicChecker(topic_slug);
-//         console.log(checkedTopic, '<-- checked topic')
-//         console.log(checkedTopic.length, '<-- checked topic length')
-//         if (checkedTopic.length > 0) {
-//             api.fetchArticles(topic_slug, sort_by).then((response) => {
-//                 this.setState({ articles: response.articles, isFetching: false })
-//             }).catch((error) => {
-//                 return <ErrorFrame error={error} />
-//             })
-//         }
-
-//     }
-// }
+    //         return response.data.topics.forEach((topic) => {
+    //             // console.log(topic.slug, '<-- the current topic slug', topic_slug, '<-- the requested topic slug')
+    //             if (topic.slug === topic_slug) {
+    //                 hasTopic = true;
+    //             }
+    //         })
+    //     })
+    //     console.log(hasTopic, '<-- checked topic before return')
+    //     return hasTopic;
+    // }

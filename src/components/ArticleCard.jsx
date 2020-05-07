@@ -25,7 +25,6 @@ const ArticleCard = (props) => {
                 <p className="card__comment-count">COMMENTS: {comment_count}</p>
             </div>
             <div className="column-three">
-                <button className="card__button">HIDE</button>
                 <p className="card__author" >{author}</p>
             </div>
         </article>
@@ -33,3 +32,7 @@ const ArticleCard = (props) => {
 };
 
 export default ArticleCard;
+
+// Add ability to hide unwanted articles if time...
+
+// <button className="card__button">HIDE</button>
