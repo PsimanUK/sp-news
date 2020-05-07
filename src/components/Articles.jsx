@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import * as api from '../utils/api';
 import ArticleCard from './ArticleCard';
 import ArticlesForm from './ArticlesForm';
+import ErrorFrame from './ErrorFrame';
 
 class Articles extends Component {
 
@@ -15,12 +16,12 @@ class Articles extends Component {
             votes: '',
             comment_count: '',
         }],
-        isMounted: false,
+        isFetching: true,
         sort_by: 'created_at'
     }
 
     render() {
-        if (this.state.isMounted === false) return <p>Fetching Articles...</p>
+        if (this.state.isFetching === true) return <p>Fetching Articles...</p>
         return (
             <main >
                 <ArticlesForm updateSortBy={this.updateSortBy} />
@@ -33,12 +34,13 @@ class Articles extends Component {
 
     componentDidUpdate = (prevProps, prevState) => {
         const { topic_slug } = this.props;
+        const { sort_by } = this.state;
 
-        if (topic_slug !== prevProps.topic_slug || this.state.sort_by !== prevState.sort_by) {
-            api.fetchArticles(topic_slug, this.state.sort_by).then((response) => {
-                this.setState({ articles: response.articles, isMounted: this.state.isMounted })
+        if (topic_slug !== prevProps.topic_slug || sort_by !== prevState.sort_by) {
+            api.fetchArticles(topic_slug, sort_by).then((response) => {
+                this.setState({ articles: response.articles, isFetching: false })
             }).catch((error) => {
-                console.dir(error, 'YOU HAVE AN ARTICLE TOPIC ERROR')
+                <ErrorFrame error={error} />
             })
         }
     }
@@ -46,10 +48,10 @@ class Articles extends Component {
     componentDidMount = () => {
         console.log('Articles Mounted!')
         api.fetchArticles().then(({ articles }) => {
-            this.setState({ articles, isMounted: true, currentTopic: 'all' })
+            this.setState({ articles, isFetching: false, currentTopic: 'all' })
 
         }).catch((error) => {
-            console.log(error, 'YOU HAVE AN ARTICLES ERROR')
+            <ErrorFrame error={error} />
         })
     };
 

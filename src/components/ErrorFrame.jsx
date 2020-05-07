@@ -4,7 +4,7 @@ const ErrorFrame = ({ error }) => {
 
     return (
         <div>
-            {error ? error : <p>YOU HAVE ENCOUNTERED AN ERROR!</p>}
+            {error ? <p>We have encountered the following error: {error}</p> : <p>YOU HAVE ENCOUNTERED AN ERROR!</p>}
         </div>
     );
 };
