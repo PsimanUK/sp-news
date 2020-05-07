@@ -58,6 +58,7 @@ label {
 }
 
 .card {
+  background-color: rgb(230, 235, 235);
   margin: auto;
   align-self: center;
   max-width: 80%;
