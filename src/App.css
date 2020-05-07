@@ -115,7 +115,12 @@ label {
   }
 
   .DisplayBarInfo {
+    font-size: smaller;
     height: 40px;
+  }
+
+  .sort-by_label {
+    font-size: smaller;
   }
 }
 

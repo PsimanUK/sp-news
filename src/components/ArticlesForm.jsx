@@ -4,7 +4,7 @@ const ArticlesForm = (props) => {
     const { updateSortBy } = props;
     return (
         <form>
-            <label htmlFor="sort-selector">SORT BY: </label>
+            <label className="sort-by_label" htmlFor="sort-selector">SORT BY: </label>
             <select id="sort-selector">
                 <option value="created_at" onClick={() => updateSortBy('created_at')}>Date</option>
                 <option value="comment_count" onClick={() => updateSortBy('comment_count')} >Comments</option>
