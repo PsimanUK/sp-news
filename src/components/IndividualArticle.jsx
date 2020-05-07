@@ -6,15 +6,17 @@ import ErrorFrame from './ErrorFrame';
 
 class IndividualArticle extends Component {
 
-    state = { article: { author: '', title: '', article_id: 0, body: '', topic: '', created_at: '', votes: 0, comment_count: 0 }, isMounted: false, commentCountChange: 0, error: null };
+    state = { article: { author: '', title: '', article_id: 0, body: '', topic: '', created_at: '', votes: 0, comment_count: 0 }, isFetching: true, commentCountChange: 0, error: '' };
 
     render() {
-        if (this.state.isMounted === false && !this.state.error) return <p>Just Fetching the Article for you...</p>;
-        if (this.state.error) return <ErrorFrame error=/*{this.state.error}*/"THIS ERROR" />;
+        if (this.state.isFetching === true && !this.state.error) return <p>Just Fetching the Article for you...</p>;
+        if (this.state.error) return <ErrorFrame error={this.state.error.toString()} />;
+
         const { author, title, body, article_id, created_at, topic, votes } = this.state.article;
         const { username } = this.props;
         const formattedDate = utils.formatDate(created_at);
         const comment_count = parseInt(this.state.article.comment_count);
+
         return (
             <section>
                 <article className="card" key={article_id}>
@@ -47,9 +49,9 @@ class IndividualArticle extends Component {
 
         api.fetchIndividualArticle(article_id).then((response) => {
 
-            this.setState({ article: response, isMounted: true })
+            this.setState({ article: response, isFetching: false })
         }).catch((newError) => {
-
+            // console.dir(newError, '<-- the newError from cDM in IndividualArticle.jsx')
             this.setState({ error: newError })
         })
 
@@ -61,9 +63,9 @@ class IndividualArticle extends Component {
             const { article_id } = this.props;
             api.fetchIndividualArticle(article_id).then((response) => {
 
-                this.setState({ article: response, isMounted: true })
+                this.setState({ article: response, isFetching: false })
             }).catch((newError) => {
-
+                // console.dir(newError, '<-- the newError from cDU in IndividualArticle.jsx')
                 this.setState({ error: newError })
             })
         }
@@ -71,13 +73,13 @@ class IndividualArticle extends Component {
 
     articleVoteChanger = (voteChange) => {
         const { author, title, article_id, body, topic, created_at, votes, comment_count } = this.state.article;
-        const { isMounted, error } = this.state;
-        this.setState({ article: { author, title, article_id, body, topic, created_at, votes: votes + voteChange, comment_count }, isMounted, error })
+        const { isFetching, error } = this.state;
+        this.setState({ article: { author, title, article_id, body, topic, created_at, votes: votes + voteChange, comment_count }, isFetching, error })
         api.updateArticleVote(article_id, voteChange).then((response) => {
             return response;
         })
-            .catch((error) => {
-                console.dir(error, '<-- error from articleVoteChanger')
+            .catch((newError) => {
+                this.setState({ error: newError });
             })
     };
 

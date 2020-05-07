@@ -22,7 +22,7 @@ class App extends Component {
           <Articles path="/articles" />
           <Articles path="/topics/:topic_slug" />
           <IndividualArticle path="/articles/:article_id" username={this.state.user} />
-          <ErrorFrame default />
+          <ErrorFrame errorMessage="Error 404: path not found." default />
         </Router>
       </div>
     );

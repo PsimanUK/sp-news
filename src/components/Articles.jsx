@@ -40,7 +40,7 @@ class Articles extends Component {
             api.fetchArticles(topic_slug, sort_by).then((response) => {
                 this.setState({ articles: response.articles, isFetching: false })
             }).catch((error) => {
-                <ErrorFrame error={error} />
+                return <ErrorFrame error={error} />
             })
         }
     }
@@ -51,7 +51,7 @@ class Articles extends Component {
             this.setState({ articles, isFetching: false, currentTopic: 'all' })
 
         }).catch((error) => {
-            <ErrorFrame error={error} />
+            return <ErrorFrame error={error} />
         })
     };
 

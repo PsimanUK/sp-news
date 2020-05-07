@@ -8,6 +8,7 @@ export const fetchArticles = (topic, sort_by, order) => {
 
 export const fetchIndividualArticle = (article_id) => {
     return axios.get(`https://sp-news.herokuapp.com/api/articles/${article_id}`).then(({ data }) => {
+        console.dir(data, "<-- data from fetchIndividualArticle")
         return data.article;
     })
 };
