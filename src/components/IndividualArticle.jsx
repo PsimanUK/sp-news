@@ -50,25 +50,27 @@ class IndividualArticle extends Component {
 
             this.setState({ article: response, isFetching: false })
         }).catch((newError) => {
+            //newError.response.data.msg
             // console.dir(newError, '<-- the newError from cDM in IndividualArticle.jsx')
             this.setState({ error: newError })
         })
 
     };
 
-    componentDidUpdate = (prevProps, prevState) => {
-        const { votes, comment_count } = this.state.article;
-        if (votes !== prevState.article.votes || comment_count !== prevState.article.comment_count) {
-            const { article_id } = this.props;
-            api.fetchIndividualArticle(article_id).then((response) => {
+    // componentDidUpdate = (prevProps, prevState) => {
+    //     const { votes, comment_count } = this.state.article;
+    //     if (votes !== prevState.article.votes || comment_count !== prevState.article.comment_count) {
+    //         const { article_id } = this.props;
+    //         api.fetchIndividualArticle(article_id).then((response) => {
 
-                this.setState({ article: response, isFetching: false })
-            }).catch((newError) => {
-                // console.dir(newError, '<-- the newError from cDU in IndividualArticle.jsx')
-                this.setState({ error: newError })
-            })
-        }
-    }
+    //             this.setState({ article: response, isFetching: false })
+    //         }).catch((newError) => {
+    //             // newError.response.data.msg
+    //             // console.dir(newError, '<-- the newError from cDU in IndividualArticle.jsx')
+    //             this.setState({ error: newError })
+    //         })
+    //     }
+    // }
 
     articleVoteChanger = (voteChange) => {
         const { author, title, article_id, body, topic, created_at, votes, comment_count } = this.state.article;

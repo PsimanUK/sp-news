@@ -25,7 +25,7 @@ class Articles extends Component {
         if (this.state.isFetching === true) return <p>Fetching Articles...</p>
         if (this.state.error === true) return <ErrorFrame errorMessage={`We don't have any ${this.props.topic_slug} articles.`} />
         return (
-            <main >
+            <main className="articles_frame" >
                 <ArticlesForm updateSortBy={this.updateSortBy} />
                 {this.state.articles.map((article) => {
                     return <ArticleCard key={article.article_id} article={article} />

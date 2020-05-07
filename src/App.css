@@ -1,14 +1,31 @@
 .App {
+  font-family: 'Red Hat Display', sans-serif;;
   text-align: center;
 }
 
 .heading {
   margin: auto;
   max-width: 85%;
-  height: 180px;
+  height: 190px;
   background-color: rgb(121, 194, 194);
   border-radius: 10px;
 }
+
+.site-header {
+  margin: 4px;
+  font-size: 50px;
+  font-family: 'Rock Salt', cursive;
+}
+
+.site-tagline {
+  margin: 2px
+}
+
+.logged-in-message {
+  font-size: 12px;
+  margin: 2px
+}
+
 
 .NavBarSelectors {
   margin: auto;
@@ -25,6 +42,7 @@
 }
 
 .DisplayBar {
+  display: flex;
   margin: auto;
   max-width: 70%;
   height: 30px;
@@ -36,10 +54,10 @@
 .DisplayBarInfo {
   margin: auto;
   align-self: auto;
-  max-width: 50%;
+  width: 60%;
   height: 20px;
   text-align: center;
-  background-color: rgb(139, 139, 139);
+  background-color: rgb(211, 218, 219);
   border-radius: 10px;
 }
 
@@ -57,11 +75,20 @@ label {
   padding: 20px;
 }
 
+.articles_frame {
+  display: grid;
+  gap: 10px;
+  direction: column;
+
+}
+
 .card {
+  display: grid;
+  grid-template-columns: 70% 15% 15%;
   background-color: rgb(230, 235, 235);
   margin: auto;
   align-self: center;
-  max-width: 80%;
+  width: 80%;
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
   transition: 0.3s;
   border-radius: 5px;
@@ -72,6 +99,8 @@ label {
 }
 
 .card__topic {
+  text-align: left;
+  text-indent: 10px;
   font-size: 10px;
 }
 
@@ -84,6 +113,8 @@ label {
 }
 
 .card__date {
+  text-align: left;
+  text-indent: 10px;
   font-size: 10px;
 }
 
@@ -92,20 +123,32 @@ label {
   max-width: 50px
 }
 
-.column-one {
-  width: 70%;
-}
+.card__author {
+  text-align: bottom;
+  text-indent: 10px;
 
-.column-two {
-  width: 15%;
-}
-
-.column-three {
-  width: 15%;
 }
 
 @media only screen and (max-width: 650px) {
 
+  .heading {
+    height: 100px;
+  }
+  
+  .site-header {
+    margin: 4px;
+    font-size: 30px;
+  }
+  
+  .site-tagline {
+    font-size: smaller;
+    margin: 2px
+  }
+
+  .logged-in-message {
+    font-size: 10px;
+  }
+  
   .NavBarSelectors {
     height: 46px;
   }
@@ -116,11 +159,16 @@ label {
 
   .DisplayBarInfo {
     font-size: smaller;
-    height: 40px;
+    height: 38px;
   }
 
   .sort-by_label {
     font-size: smaller;
+  }
+
+  .card__author {
+    font-size: smaller;
+  
   }
 }
 
