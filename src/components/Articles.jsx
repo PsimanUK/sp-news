@@ -15,6 +15,7 @@ class Articles extends Component {
             created_at: '',
             votes: '',
             comment_count: '',
+            view_count: ''
         }],
         isFetching: true,
         sort_by: 'created_at',

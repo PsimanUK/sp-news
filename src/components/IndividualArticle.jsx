@@ -6,13 +6,13 @@ import ErrorFrame from './ErrorFrame';
 
 class IndividualArticle extends Component {
 
-    state = { article: { author: '', title: '', article_id: 0, body: '', topic: '', created_at: '', votes: 0, comment_count: 0 }, isFetching: true, commentCountChange: 0, error: '' };
+    state = { article: { author: '', title: '', article_id: 0, body: '', topic: '', created_at: '', votes: 0, view_count: 0, comment_count: 0 }, isFetching: true, commentCountChange: 0, error: '' };
 
     render() {
         if (this.state.isFetching === true && !this.state.error) return <p>Just Fetching the Article for you...</p>;
         if (this.state.error) return <ErrorFrame error={this.state.error.toString()} />;
 
-        const { author, title, body, article_id, created_at, topic, votes } = this.state.article;
+        const { author, title, body, article_id, created_at, topic, votes, view_count } = this.state.article;
         const { username } = this.props;
         const formattedDate = utils.formatDate(created_at);
         const comment_count = parseInt(this.state.article.comment_count);
@@ -23,6 +23,7 @@ class IndividualArticle extends Component {
                     <section className="column-one">
                         <p className="card__topic" >TOPIC: {topic}</p>
                         <h3 className="card__title" >{title}</h3>
+                        <p className="card__author" >WRITTEN BY: {author}</p>
                         <p className="card__body" >{body}</p>
                         <p className="card__date">{formattedDate}</p>
                     </section>
@@ -33,7 +34,7 @@ class IndividualArticle extends Component {
                         <button onClick={() => this.articleVoteChanger(-1)}>VOTE DOWN</button>
                     </section>
                     <section className="column-three">
-                        <p className="card__author" >{author}</p>
+                        <p className="card__view_count">VIEWS: {view_count}</p>
                     </section>
                 </article>
                 <h3>See Below For Comments</h3>

@@ -33,8 +33,14 @@ export const postComment = (article_id, username, body) => {
 };
 
 export const updateArticleVote = (article_id, voteChange) => {
-    console.log(article_id, '<-- the article needing vote change and ', voteChange, '<-- the requested vote change amount')
     return axios.patch(`https://sp-news.herokuapp.com/api/articles/${article_id}`, { inc_votes: voteChange })
+        .then((response) => {
+            return response;
+        })
+};
+
+export const updateArticleViewCount = (article_id, viewed) => {
+    return axios.patch(`https://sp-news.herokuapp.com/api/articles/${article_id}`, { viewed })
         .then((response) => {
             return response;
         })
