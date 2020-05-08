@@ -104,6 +104,11 @@ label {
   font-size: 10px;
 }
 
+.card__title {
+  text-align: left;
+  margin-left: 20px;
+}
+
 .card__votes {
   font-size: 10px;
 }
@@ -124,9 +129,15 @@ label {
 }
 
 .card__author {
-  text-align: bottom;
-  text-indent: 10px;
+  text-align: left;
+  text-indent: 30px;
+  font-size: 12px;
+}
 
+.card__view_count {
+  font-size: 10px;
+  text-align: right;
+  padding: 10px;
 }
 
 @media only screen and (max-width: 650px) {
@@ -170,5 +181,10 @@ label {
     font-size: smaller;
   
   }
+
+  .card__view_count {
+    font-size: 8px;
+  }
+
 }
 

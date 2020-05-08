@@ -34,7 +34,7 @@ class IndividualArticle extends Component {
                         <button onClick={() => this.articleVoteChanger(-1)}>VOTE DOWN</button>
                     </section>
                     <section className="column-three">
-                        <p className="card__view_count">VIEWS: {view_count}</p>
+                        <p className="card__view_count">VIEWS: {view_count + 1}</p>
                     </section>
                 </article>
                 <h3>See Below For Comments</h3>
