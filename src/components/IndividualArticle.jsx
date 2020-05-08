@@ -21,11 +21,11 @@ class IndividualArticle extends Component {
             <section>
                 <article className="card" key={article_id}>
                     <section className="column-one">
-                        <p className="card__topic" >TOPIC: {topic}</p>
+                        <p className="card__topic" >Topic: {topic.toUpperCase()}</p>
                         <h3 className="card__title" >{title}</h3>
-                        <p className="card__author" >WRITTEN BY: {author}</p>
+                        <p className="card__author" >Written By: {author.toUpperCase()}</p>
                         <p className="card__body" >{body}</p>
-                        <p className="card__date">{formattedDate}</p>
+                        <p className="card__date">Created: {formattedDate}</p>
                     </section>
                     <section className="column-two">
                         <p className="card__votes">VOTES: {votes}</p>

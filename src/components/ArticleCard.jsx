@@ -24,10 +24,10 @@ const ArticleCard = (props) => {
     return (
         <article className="card" key={article_id}>
             <div className="column-one">
-                <p className="card__topic" >TOPIC: {topic}</p>
+                <p className="card__topic" >Topic: {topic.toUpperCase()}</p>
                 <Link onClick={() => { updateViewCount() }} to={`/articles/${article_id}`} ><h3 className="card__title" >{title}</h3></Link>
-                <p className="card__author" >WRITTEN BY: {author}</p>
-                <p className="card__date">CREATED: {formattedDate}</p>
+                <p className="card__author" >Written By: {author.toUpperCase()}</p>
+                <p className="card__date">Created: {formattedDate}</p>
             </div>
             <div className="column-two">
                 <p className="card__votes">VOTES: {votes}</p>
