@@ -4,7 +4,11 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Background
 
-This project has been created to demonstrate my skills using React to build an app as part of the block review for the front-end stage of the Northcoders' Developer Pathway. This front end allows users to interact with the server I created from my back-end block review.
+The goal of this project has been to create a React app to allows users to interact with articles hosted on a simple news website. The user is able to read articles on a range of subjects as well as leave comments and vote on the articles they like. The user is also able to delete any of the comments they have created.
+
+This project has been created to demonstrate my React app building skills. This app has been submitted as my final test for the front-end stage of Northcoders' Developer Pathway course. 
+
+This React app allows users to interact with the server I created as my final test back-end stage of the course.
 
 ## Links
 
@@ -21,9 +25,31 @@ https://github.com/PsimanUK/be-review-news <br />
 https://sp-news.herokuapp.com/api/ <br />
 
 
-## Scripts
+## How to run locally
 
-### `npm start`
+### Cloning
+
+To clone this repo enter the following in your CLI:
+
+```bash
+https://github.com/PsimanUK/sp-news.git
+```
+
+### Installing
+
+To install the dependencies enter the following in your CLI:
+
+```bash
+npm install
+```
+
+### Starting
+
+To start enter the following in your CLI:
+
+```bash
+npm start
+```
 
 Runs the app in the development mode.<br />
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.

@@ -29,7 +29,8 @@ class CommentPoster extends Component {
     };
 
     handleChange = (event) => {
-        this.setState({ commentBody: event.target.value })
+        const newComment = event.target.value;
+        this.setState({ commentBody: newComment })
     }
 }
 
