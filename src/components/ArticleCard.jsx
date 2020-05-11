@@ -20,7 +20,7 @@ const ArticleCard = (props) => {
         api.updateArticleViewCount(article_id, 1);
     };
 
-    const formattedDate = utils.formatDate(created_at);
+    const formattedDate = utils.formatDateMoment(created_at);
     return (
         <article className="card" key={article_id}>
             <div className="column-one">

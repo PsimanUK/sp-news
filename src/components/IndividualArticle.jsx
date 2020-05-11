@@ -15,7 +15,7 @@ class IndividualArticle extends Component {
 
         const { author, title, body, article_id, created_at, topic, votes, view_count } = this.state.article;
         const { username } = this.props;
-        const formattedDate = utils.formatDate(created_at);
+        const formattedDate = utils.formatDateMoment(created_at);
         const comment_count = parseInt(this.state.article.comment_count);
 
         return (
