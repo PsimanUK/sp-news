@@ -39,15 +39,9 @@ class Articles extends Component {
         const { topic_slug } = this.props;
         const { sort_by } = this.state;
 
-        if (this.state.error)
-
-            if (topic_slug !== prevProps.topic_slug || sort_by !== prevState.sort_by) {
-
-                this.getArticles(topic_slug, sort_by);
-
-            }
-
-
+        if (topic_slug !== prevProps.topic_slug || sort_by !== prevState.sort_by) {
+            this.getArticles(topic_slug, sort_by);
+        }
     }
 
     componentDidMount = () => {
@@ -59,6 +53,7 @@ class Articles extends Component {
     };
 
     updateSortBy = (sort_by) => {
+        console.log(sort_by, '<-- the new sort by value')
         if (sort_by !== this.state.sort_by) {
             this.setState({ sort_by })
         };
