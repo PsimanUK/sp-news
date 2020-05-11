@@ -1,12 +1,14 @@
 .App {
   font-family: 'Red Hat Display', sans-serif;;
   text-align: center;
+  max-width: 1080px;
 }
 
 .heading {
   margin: auto;
   max-width: 85%;
   height: 190px;
+  background-image: linear-gradient(141deg, white 5%, rgb(162, 206, 206) 20%, rgb(121, 194, 194) 75%);
   background-color: rgb(121, 194, 194);
   border-radius: 10px;
 }
@@ -64,6 +66,33 @@
 
 label {
   padding: 10px;
+}
+
+.comment-card {
+  max-width: 70%;
+  margin: auto;
+  background-color: rgb(204, 218, 218);
+  border-radius: 8px;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+}
+
+.comment_card:hover {
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.3);
+}
+
+.comment-card__body {
+  text-align: left;
+  padding: 20px;
+  font-size: 12px;
+}
+
+.comment-card__author {
+  font-size: 12px;
+}
+
+.comment-card__date {
+  font-size: 10px;
 }
 
 .comment-input {

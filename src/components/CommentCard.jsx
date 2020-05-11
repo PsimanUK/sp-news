@@ -6,12 +6,12 @@ const CommentCard = (props) => {
     const { comment, username } = props;
     return (
         <section className="comment-card" >
-            <p>{comment.body}</p>
-            <p>{comment.author}</p>
-            <p>{formatDate(comment.created_at)}</p>
+            <p className="comment-card__body" >{comment.body}</p>
+            <p className="comment-card__author" >{comment.author}</p>
             <VotingButtons path={'comments'} ID={comment.comment_id} votes={comment.votes} />
             {comment.author === username &&
-                <button onClick={() => { props.removeComment(comment.comment_id) }} >DELETE COMMENT</button>}
+                <button className="comment-card__delete" onClick={() => { props.removeComment(comment.comment_id) }} >DELETE COMMENT</button>}
+            <p className="comment-card__date" >{formatDate(comment.created_at)}</p>
         </section>
     );
 };
