@@ -19,27 +19,16 @@ class VotingButtons extends Component {
 
     voteChanger = (voteChange) => {
         const { votes } = this.state;
-        console.log(typeof votes, '<-- what the votes are')
-        console.log(typeof voteChange, '<-- what the voteChange is')
-        if (this.props.article_id) {
-            const { article_id } = this.props;
-            this.setState({ votes: this.state.votes + voteChange })
-            api.updateArticleVote(article_id, voteChange).then((response) => {
-                return response;
+        const { ID, path } = this.props;
+
+        this.setState({ votes: votes + voteChange })
+        api.updateVote(path, ID, voteChange).then((response) => {
+            return response;
+        })
+            .catch((error) => {
+                console.dir(error, '<-- error from commentVoteChanger')
             })
-                .catch((error) => {
-                    console.dir(error, '<-- error from commentVoteChanger')
-                })
-        } else if (this.props.comment_id) {
-            const { comment_id } = this.props;
-            this.setState({ votes: this.state.votes + voteChange })
-            api.updateCommentVote(comment_id, voteChange).then((response) => {
-                return response;
-            })
-                .catch((error) => {
-                    console.dir(error, '<-- error from articleVoteChanger')
-                })
-        }
+
     };
 
     componentDidMount = () => {

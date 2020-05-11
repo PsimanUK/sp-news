@@ -29,8 +29,8 @@ class IndividualArticle extends Component {
                         <p className="card__date">Created: {formattedDate}</p>
                     </section>
                     <section className="column-two">
-                        <p className="card__comment-count">COMMENTS: {comment_count + this.state.commentCountChange}</p>
-                        <VotingButtons article_id={article_id} votes={votes} />
+                        <p className="card__comment-count">COMMENTS: {comment_count}</p>
+                        <VotingButtons path={'articles'} ID={article_id} votes={votes} />
                     </section>
                     <section className="column-three">
                         <p className="card__view_count">VIEWS: {view_count + 1}</p>

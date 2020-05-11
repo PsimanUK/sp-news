@@ -29,7 +29,6 @@ class Comments extends Component {
     componentDidMount = () => {
         api.fetchComments(this.props.article_id).then((response) => {
             this.setState({ comments: response, isMounted: true })
-
         })
     }
 
@@ -44,7 +43,6 @@ class Comments extends Component {
             return (comment.comment_id !== comment_id && comment);
 
         })
-        console.log(updatedComments, '<-- updateComments array')
         this.setState({ comments: updatedComments, isMounted: true })
 
         api.deleteComment(comment_id)

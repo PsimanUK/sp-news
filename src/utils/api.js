@@ -32,13 +32,6 @@ export const postComment = (article_id, username, body) => {
         })
 };
 
-export const updateArticleVote = (article_id, voteChange) => {
-    return axios.patch(`https://sp-news.herokuapp.com/api/articles/${article_id}`, { inc_votes: voteChange })
-        .then((response) => {
-            return response;
-        })
-};
-
 export const updateArticleViewCount = (article_id, viewed) => {
     return axios.patch(`https://sp-news.herokuapp.com/api/articles/${article_id}`, { viewed })
         .then((response) => {
@@ -46,8 +39,8 @@ export const updateArticleViewCount = (article_id, viewed) => {
         })
 };
 
-export const updateCommentVote = (comment_id, voteChange) => {
-    return axios.patch(`https://sp-news.herokuapp.com/api/comments/${comment_id}`, { inc_votes: voteChange })
+export const updateVote = (path, ID, voteChange) => {
+    return axios.patch(`https://sp-news.herokuapp.com/api/${path}/${ID}`, { inc_votes: voteChange })
         .then((response) => {
             return response;
         })

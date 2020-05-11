@@ -9,7 +9,7 @@ const CommentCard = (props) => {
             <p>{comment.body}</p>
             <p>{comment.author}</p>
             <p>{formatDate(comment.created_at)}</p>
-            <VotingButtons comment_id={comment.comment_id} votes={comment.votes} />
+            <VotingButtons path={'comments'} ID={comment.comment_id} votes={comment.votes} />
             {comment.author === username &&
                 <button onClick={() => { props.removeComment(comment.comment_id) }} >DELETE COMMENT</button>}
         </section>
