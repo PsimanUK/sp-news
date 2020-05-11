@@ -3,6 +3,7 @@ import * as api from '../utils/api';
 import * as utils from '../utils/utils'
 import Comments from './Comments';
 import ErrorFrame from './ErrorFrame';
+import VotingButtons from './VotingButtons';
 
 class IndividualArticle extends Component {
 
@@ -28,10 +29,8 @@ class IndividualArticle extends Component {
                         <p className="card__date">Created: {formattedDate}</p>
                     </section>
                     <section className="column-two">
-                        <p className="card__votes">VOTES: {votes}</p>
                         <p className="card__comment-count">COMMENTS: {comment_count + this.state.commentCountChange}</p>
-                        <button onClick={() => this.articleVoteChanger(1)} >VOTE UP</button>
-                        <button onClick={() => this.articleVoteChanger(-1)}>VOTE DOWN</button>
+                        <VotingButtons article_id={article_id} votes={votes} />
                     </section>
                     <section className="column-three">
                         <p className="card__view_count">VIEWS: {view_count + 1}</p>
@@ -58,36 +57,9 @@ class IndividualArticle extends Component {
 
     };
 
-    // componentDidUpdate = (prevProps, prevState) => {
-    //     const { votes, comment_count } = this.state.article;
-    //     if (votes !== prevState.article.votes || comment_count !== prevState.article.comment_count) {
-    //         const { article_id } = this.props;
-    //         api.fetchIndividualArticle(article_id).then((response) => {
-
-    //             this.setState({ article: response, isFetching: false })
-    //         }).catch((newError) => {
-    //             // newError.response.data.msg
-    //             // console.dir(newError, '<-- the newError from cDU in IndividualArticle.jsx')
-    //             this.setState({ error: newError })
-    //         })
-    //     }
-    // }
-
-    articleVoteChanger = (voteChange) => {
-        const { author, title, article_id, body, topic, created_at, votes, comment_count } = this.state.article;
-        const { isFetching, error } = this.state;
-        this.setState({ article: { author, title, article_id, body, topic, created_at, votes: votes + voteChange, comment_count }, isFetching, error })
-        api.updateArticleVote(article_id, voteChange).then((response) => {
-            return response;
-        })
-            .catch((newError) => {
-                this.setState({ error: newError });
-            })
-    };
-
-    commentCountChanger = (commentCountChange) => {
-        this.setState({ commentCountChange })
-    };
+    // commentCountChanger = (commentCountChange) => {
+    //     this.setState({ commentCountChange })
+    // };
 };
 
 export default IndividualArticle;

@@ -33,14 +33,6 @@ class Comments extends Component {
         })
     }
 
-    // componentDidUpdate = (prevProps, prevState) => {
-    //     if (this.state.comments.length !== prevState.comments.length) {
-    //         api.fetchComments(this.props.article_id).then((response) => {
-    //             this.setState({ comments: response, isMounted: true })
-    //         })
-    //     }
-    // }
-
     updateComments = (comment) => {
         this.setState({ comments: [comment, ...this.state.comments], isMounted: true })
     };
