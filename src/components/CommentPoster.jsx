@@ -3,7 +3,7 @@ import * as api from '../utils/api';
 
 class CommentPoster extends Component {
 
-    state = { commentBody: '', commentSubmitted: false }
+    state = { commentBody: '', commentSubmitted: false, error: null }
 
     render() {
         return (
@@ -11,7 +11,8 @@ class CommentPoster extends Component {
                 <label >Comment:
                     <textarea onChange={this.handleChange} className="comment-input" value={this.state.commentBody} type="text" name="body" placeholder='Enter your comment here...' required ></textarea>
                 </label>
-                <button>SUBMIT</button>
+                {!this.state.error && <button>SUBMIT</button>}
+                {this.state.error && <p>Error connecting to server; cannot currently post comments.</p>}
             </form>
         );
     }
@@ -24,7 +25,7 @@ class CommentPoster extends Component {
         return api.postComment(article_id, username, body).then((response) => {
             updateComments(response.data.comment);
             this.setState({ commentBody: '' });
-        }).catch((err) => console.dir(err.response, '<-- error from postComment in handleCommentSubmit'))
+        }).catch((error) => this.setState({ error }))
     };
 
     handleChange = (event) => {

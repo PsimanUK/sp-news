@@ -5,6 +5,7 @@ class VotingButtons extends Component {
 
     state = {
         votes: 0,
+        error: ''
     }
 
     render() {
@@ -13,6 +14,8 @@ class VotingButtons extends Component {
                 <p className="card__votes">VOTES: {this.state.votes}</p>
                 <button onClick={() => this.voteChanger(1)} >VOTE UP</button>
                 <button onClick={() => this.voteChanger(-1)} >VOTE DOWN</button>
+                {this.state.error && this.setState({ votes: this.state.votes - 1 })}
+                {this.state.error && <p>Error connecting to server; cannot vote</p>}
             </section>
         );
     }
@@ -26,7 +29,7 @@ class VotingButtons extends Component {
             return response;
         })
             .catch((error) => {
-                console.dir(error, '<-- error from commentVoteChanger')
+                this.setState({ error })
             })
 
     };

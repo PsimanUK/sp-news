@@ -24,7 +24,7 @@ class Articles extends Component {
 
     render() {
         if (this.state.isFetching === true) return <p>Fetching Articles...</p>
-        if (this.state.error === true) return <ErrorFrame errorMessage={`We don't have any ${this.props.topic_slug} articles.`} />
+        if (typeof this.state.error === 'string') return <ErrorFrame errorMessage={this.state.error} />
         return (
             <main className="articles_frame" >
                 <ArticlesForm updateSortBy={this.updateSortBy} />
@@ -39,11 +39,15 @@ class Articles extends Component {
         const { topic_slug } = this.props;
         const { sort_by } = this.state;
 
-        if (topic_slug !== prevProps.topic_slug || sort_by !== prevState.sort_by) {
+        if (this.state.error)
 
-            this.getArticles(topic_slug, sort_by);
+            if (topic_slug !== prevProps.topic_slug || sort_by !== prevState.sort_by) {
 
-        }
+                this.getArticles(topic_slug, sort_by);
+
+            }
+
+
     }
 
     componentDidMount = () => {
@@ -62,10 +66,17 @@ class Articles extends Component {
 
     getArticles = (topic_slug, sort_by) => {
         api.fetchArticles(topic_slug, sort_by).then(({ articles }) => {
-            this.setState({ articles, isFetching: false, currentTopic: topic_slug && 'all' })
+            console.log(articles, '<-- articles')
+            if (articles.length === 0) {
+                this.setState({ error: `Sorry. We don't have any ${this.props.topic_slug} articles.`, isFetching: false });
+            } else {
+                this.setState({ articles, isFetching: false, currentTopic: topic_slug && 'all' })
+            }
+
 
         }).catch((error) => {
-            return <ErrorFrame error={error.response.data.msg} status={error.response.data.status} />
+            this.setState({ error })
+            // return <ErrorFrame error={error.response.data.msg} status={error.response.data.status} />
         })
     }
 
