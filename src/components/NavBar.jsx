@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Link } from '@reach/router';
-import DisplayBar from './DisplayBar';
 import * as api from '../utils/api';
 
 class NavBar extends Component {
@@ -12,6 +11,7 @@ class NavBar extends Component {
     }
 
     render() {
+        const { currentTopic } = this.state;
         return (
             <nav>
                 <section className="NavBarSelectors" >
@@ -21,8 +21,8 @@ class NavBar extends Component {
                     })}
                 </section>
                 <br />
-                <section>
-                    <DisplayBar currentTopic={this.state.currentTopic} />
+                <section className="DisplayBar">
+                    <p className="DisplayBarInfo" >Currently Displaying {currentTopic[0].toUpperCase() + currentTopic.substr(1)} Articles</p>
                 </section>
             </nav>
         );
