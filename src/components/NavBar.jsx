@@ -7,11 +7,9 @@ class NavBar extends Component {
     state = {
         topics: [{ slug: '', description: '' }],
         sort_by: 'asc',
-        currentTopic: 'all'
     }
 
     render() {
-        const { currentTopic } = this.state;
         return (
             <nav>
                 <section className="NavBarSelectors" >
@@ -19,11 +17,9 @@ class NavBar extends Component {
                     {this.state.topics.map((topic) => {
                         return <Link to={`/topics/${topic.slug}`} key={topic.slug}><button onClick={this.handleTopicClick} value={topic.slug}>{topic.slug.toUpperCase()} ARTICLES</button></Link>
                     })}
+                    <Link to="/" key="popular" ><button onClick={this.handleTopicClick} value='most popular' >MOST POPULAR</button></Link>
                 </section>
                 <br />
-                <section className="DisplayBar">
-                    <p className="DisplayBarInfo" >Currently Displaying {currentTopic[0].toUpperCase() + currentTopic.substr(1)} Articles</p>
-                </section>
             </nav>
         );
     }
@@ -35,8 +31,10 @@ class NavBar extends Component {
     };
 
     handleTopicClick = (event) => {
+        const { currentTopicChanger } = this.props;
         const { value } = event.target;
-        this.setState({ currentTopic: value, topics: this.state.topics, sort_by: this.state.sort_by })
+        currentTopicChanger(value);
+        // this.setState({ currentTopic: value, topics: this.state.topics, sort_by: this.state.sort_by })
     }
 
 }

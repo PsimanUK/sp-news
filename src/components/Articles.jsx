@@ -19,14 +19,20 @@ class Articles extends Component {
         }],
         isFetching: true,
         sort_by: 'created_at',
-        error: false
+        error: false,
+        currentTopic: 'most popular'
     }
 
     render() {
         if (this.state.isFetching === true) return <p>Fetching Articles...</p>
         if (typeof this.state.error === 'string') return <ErrorFrame errorMessage={this.state.error} />
+        console.log(this.props, '<-- this.props')
+        // const { currentTopic } = this.state;
         return (
             <main className="articles_frame" >
+                <section className="DisplayBar">
+                    <p className="DisplayBarInfo" >Currently Displaying {this.state.currentTopic[0].toUpperCase() + this.state.currentTopic.substr(1)} Articles</p>
+                </section>
                 <ArticlesForm updateSortBy={this.updateSortBy} />
                 {this.state.articles.map((article) => {
                     return <ArticleCard key={article.article_id} article={article} />
@@ -45,27 +51,28 @@ class Articles extends Component {
     }
 
     componentDidMount = () => {
-
+        console.log(this.props, '<-- this.props in cDM')
         const { topic_slug } = this.props;
+        if (topic_slug) this.getArticles(topic_slug);
+        else if (this.props.path === '/') this.getArticles(undefined, 'view_count', 5);
+        else this.getArticles();
 
-        this.getArticles(topic_slug);
 
     };
 
     updateSortBy = (sort_by) => {
-        console.log(sort_by, '<-- the new sort by value')
         if (sort_by !== this.state.sort_by) {
             this.setState({ sort_by })
         };
     };
 
-    getArticles = (topic_slug, sort_by) => {
-        api.fetchArticles(topic_slug, sort_by).then(({ articles }) => {
-            console.log(articles, '<-- articles')
+    getArticles = (topic_slug, sort_by, limit) => {
+        const { currentTopic } = this.props;
+        api.fetchArticles(topic_slug, sort_by, limit).then(({ articles }) => {
             if (articles.length === 0) {
                 this.setState({ error: `Sorry. We don't have any ${this.props.topic_slug} articles.`, isFetching: false });
             } else {
-                this.setState({ articles, isFetching: false, currentTopic: topic_slug && 'all' })
+                this.setState({ articles, isFetching: false, currentTopic })
             }
 
 

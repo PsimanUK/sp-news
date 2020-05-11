@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-export const fetchArticles = (topic, sort_by, order) => {
-    return axios.get('https://sp-news.herokuapp.com/api/articles', { params: { topic, sort_by } }).then(({ data }) => {
+export const fetchArticles = (topic, sort_by, limit) => {
+    return axios.get('https://sp-news.herokuapp.com/api/articles', { params: { topic, sort_by, limit } }).then(({ data }) => {
         return { articles: data.articles };
     })
 };

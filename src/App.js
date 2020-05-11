@@ -9,23 +9,28 @@ import ErrorFrame from './components/ErrorFrame';
 
 class App extends Component {
 
-  state = { user: 'weegembump' }
+  state = { user: 'weegembump', currentTopic: 'most popular' }
 
   render() {
+    const { currentTopic, user } = this.state;
     return (
       <div className="App">
-        <Header user={this.state.user} />
+        <Header user={user} />
         <br />
-        <NavBar />
+        <NavBar currentTopicChanger={this.currentTopicChanger} />
         <Router>
-          <Articles path="/" />
-          <Articles path="/articles" />
-          <Articles path="/topics/:topic_slug" />
+          <Articles path="/" currentTopic={currentTopic} />
+          <Articles path="/articles" currentTopic={currentTopic} />
+          <Articles path="/topics/:topic_slug" currentTopic={currentTopic} />
           <IndividualArticle path="/articles/:article_id" username={this.state.user} />
           <ErrorFrame errorMessage="Error 404: path not found." default />
         </Router>
       </div>
     );
+  }
+
+  currentTopicChanger = (newTopic) => {
+    this.setState({ currentTopic: newTopic })
   }
 }
 
