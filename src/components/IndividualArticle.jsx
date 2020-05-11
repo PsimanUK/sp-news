@@ -7,11 +7,11 @@ import VotingButtons from './VotingButtons';
 
 class IndividualArticle extends Component {
 
-    state = { article: { author: '', title: '', article_id: 0, body: '', topic: '', created_at: '', votes: 0, view_count: 0, comment_count: 0 }, isFetching: true, commentCountChange: 0, error: '' };
+    state = { article: { author: '', title: '', article_id: 0, body: '', topic: '', created_at: '', votes: 0, view_count: 0, comment_count: 0 }, isFetching: true, error: '' };
 
     render() {
         if (this.state.isFetching === true && !this.state.error) return <p>Just Fetching the Article for you...</p>;
-        if (this.state.error) return <ErrorFrame error={this.state.error.toString()} />;
+        if (this.state.error) return <ErrorFrame error={this.state.error/*this.state.error.toString()*/} />;
 
         const { author, title, body, article_id, created_at, topic, votes, view_count } = this.state.article;
         const { username } = this.props;
@@ -50,16 +50,12 @@ class IndividualArticle extends Component {
 
             this.setState({ article: response, isFetching: false })
         }).catch((newError) => {
-            //newError.response.data.msg
-            // console.dir(newError, '<-- the newError from cDM in IndividualArticle.jsx')
             this.setState({ error: newError })
         })
 
     };
 
-    // commentCountChanger = (commentCountChange) => {
-    //     this.setState({ commentCountChange })
-    // };
+
 };
 
 export default IndividualArticle;
@@ -67,3 +63,9 @@ export default IndividualArticle;
 // Add ability to hide unwanted articles if time...
 
 // <button className="card__button">HIDE</button>
+
+// Change the comment count in real time
+
+// commentCountChanger = (commentCountChange) => {
+    //     this.setState({ commentCountChange })
+    // };

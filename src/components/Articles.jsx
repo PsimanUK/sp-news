@@ -65,7 +65,7 @@ class Articles extends Component {
             this.setState({ articles, isFetching: false, currentTopic: topic_slug && 'all' })
 
         }).catch((error) => {
-            return <ErrorFrame error={error} />
+            return <ErrorFrame error={error.response.data.msg} status={error.response.data.status} />
         })
     }
 
