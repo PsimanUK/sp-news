@@ -26,8 +26,6 @@ class Articles extends Component {
     render() {
         if (this.state.isFetching === true) return <p>Fetching Articles...</p>
         if (typeof this.state.error === 'string') return <ErrorFrame errorMessage={this.state.error} />
-        console.log(this.props, '<-- this.props')
-        // const { currentTopic } = this.state;
         return (
             <main className="articles_frame" >
                 <section className="DisplayBar">
@@ -51,13 +49,10 @@ class Articles extends Component {
     }
 
     componentDidMount = () => {
-        console.log(this.props, '<-- this.props in cDM')
         const { topic_slug } = this.props;
         if (topic_slug) this.getArticles(topic_slug);
         else if (this.props.path === '/') this.getArticles(undefined, 'view_count', 5);
         else this.getArticles();
-
-
     };
 
     updateSortBy = (sort_by) => {
@@ -78,7 +73,6 @@ class Articles extends Component {
 
         }).catch((error) => {
             this.setState({ error })
-            // return <ErrorFrame error={error.response.data.msg} status={error.response.data.status} />
         })
     }
 

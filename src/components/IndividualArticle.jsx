@@ -11,7 +11,7 @@ class IndividualArticle extends Component {
 
     render() {
         if (this.state.isFetching === true && !this.state.error) return <p>Just Fetching the Article for you...</p>;
-        if (this.state.error) return <ErrorFrame error={this.state.error/*this.state.error.toString()*/} />;
+        if (this.state.error) return <ErrorFrame error={this.state.error} />;
 
         const { author, title, body, article_id, created_at, topic, votes, view_count } = this.state.article;
         const { username } = this.props;
@@ -43,7 +43,6 @@ class IndividualArticle extends Component {
     };
 
     componentDidMount = () => {
-        console.log('Individual Article Mounted!');
         const { article_id } = this.props;
 
         api.fetchIndividualArticle(article_id).then((response) => {
@@ -54,8 +53,6 @@ class IndividualArticle extends Component {
         })
 
     };
-
-
 };
 
 export default IndividualArticle;

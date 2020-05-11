@@ -1,9 +1,9 @@
 .App {
+  margin: 0 auto;
   font-family: 'Red Hat Display', sans-serif;;
   text-align: center;
   max-width: 1080px;
   align-self: center;
-  align-content: center;
 }
 
 .heading {

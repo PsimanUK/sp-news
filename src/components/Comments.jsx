@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import * as api from '../utils/api';
 import CommentPoster from './CommentPoster';
 import CommentCard from './CommentCard';
+import ErrorFrame from './ErrorFrame';
 
 class Comments extends Component {
 
@@ -47,7 +48,7 @@ class Comments extends Component {
 
         api.deleteComment(comment_id)
             .catch((error) => {
-                console.log(error, '<-- error from deleteComment in removeComment')
+                return <ErrorFrame errorMessage={`Sorry. Due to a server issue we are currently unable to delete your comment.`} />
             })
     };
 }
